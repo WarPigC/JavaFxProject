@@ -22,7 +22,7 @@ public class Main extends Application {
         stage.getIcons().add(icon);
 
         stage.setWidth(420);
-        stage.setHeight(420);
+        stage.setHeight(420);   // change
         stage.setResizable(false);
 
         stage.setX(50);
