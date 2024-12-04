@@ -3,6 +3,7 @@ package org.example.jfxproject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,7 +21,15 @@ import java.io.IOException;
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void start1(Stage stage) throws Exception {
         Group root = new Group();       // root node
         int width = 420, height = 420;
         Scene scene = new Scene(root, width,height,Color.LIGHTSKYBLUE);       //width, height and color can be set seperately as well
@@ -80,7 +89,7 @@ public class Main extends Application {
 
        // image node
 
-       Image img = new Image("dreamybull.jpg");
+       Image img = new Image("birb.jpg");
        ImageView view = new ImageView(img);
 
        view.setX(100);
