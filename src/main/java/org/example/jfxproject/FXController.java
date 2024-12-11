@@ -2,52 +2,81 @@ package org.example.jfxproject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.TriangleMesh;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
-public class FXController{
+import java.io.IOException;
 
-    @FXML
-    private AnchorPane anchor = new AnchorPane();
-
-    private boolean checkBool = false;
-
-    @FXML
-    private Button morph = new Button();
-
-    @FXML
-    private CheckBox check = new CheckBox();
+public class FXController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
-    private Polygon triangle = new Polygon();
-
-
+    private Button goToCalc;
     @FXML
-    public void Checker(ActionEvent e){
-        checkBool = !(checkBool);
-        check.setSelected(checkBool);
+    private Polygon shape;
+    @FXML
+    private Button button1;
+    @FXML
+    private Button button2;
+    @FXML
+    private Button randCol;
+    @FXML
+    private Button randT;
+    @FXML
+    private Label label;
+
+    public void SwitchScene1(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void SwitchScene2(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void CalculatorScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Calculator.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    @FXML
-    public void Morph(ActionEvent event) {
-        if (check.isSelected()){
-            triangle.setFill(Color.color(
-                    (double) Math.random(),
-                    (double) Math.random(),
-                    (double) Math.random())
-            );
+    public void fillColor(ActionEvent event){
+        shape.setFill(Color.color(
+                Math.random(),
+                Math.random(),
+                Math.random()
+        ));
+    }
+
+    public void randomText(ActionEvent event){
+        String temp = "abcdefghijklmnopqrstuvwxyz",inp = new String();
+        for(int i = 0 ; i < 10; ++i){
+            int r = (int) ((Math.random() * 100) % 24);
+            inp += String.valueOf(temp.charAt(r));
         }
-
-        triangle.setLayoutX(triangle.getLayoutX() + (Math.random() * 50) * ((Math.random() < 0.5) ? -1 : 1));
-        triangle.setLayoutY(triangle.getLayoutY() + (Math.random() * 50) * ((Math.random() < 0.5) ? -1 : 1));
+        label.setText(inp);
     }
-
 
 }

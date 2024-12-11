@@ -4,6 +4,7 @@ module org.example.jfxproject {
 
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
+    requires java.compiler;
 
     opens org.example.jfxproject to javafx.fxml;
     exports org.example.jfxproject;
